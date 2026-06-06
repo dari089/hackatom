@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ImagimobStudio version="0.9">
+  <Timeline id="b392b855-a7b8-4d12-86d0-60a0123e9dae">
+    <Tracks>
+      <Track name="Microphone Data" type="audiowav" isLabelTrack="False">
+        <PayloadFile>Microphone-Data.wav</PayloadFile>
+        <Shape>
+          <Axis name="Channel" size="2">
+            <Label index="0">Left</Label>
+            <Label index="1">Right</Label>
+          </Axis>
+        </Shape>
+      </Track>
+      <Track name="Live Labeling" type="labelcsv">
+        <PayloadFile>Live-Labeling.label</PayloadFile>
+        <Shape />
+      </Track>
+    </Tracks>
+  </Timeline>
+</ImagimobStudio>
