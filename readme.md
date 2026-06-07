@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Team** | ATomic |
+| **Team** | ATomic Trio |
 | **Members** | Darius, Fabian, Laurence |
 | **Board** | PSoC Edge E84 AI Evaluation Kit (`KIT_PSE84_AI`) |
 | **Live-Demo (UI)** | <https://wuhuisland.eu> |
