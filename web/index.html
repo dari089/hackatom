@@ -8,8 +8,13 @@
     <style>
         * { box-sizing: border-box; }
 
+        :root {
+            --main-red: #E20036;
+            --main-red-rgb: 226, 0, 54;
+        }
+
         body {
-            background: #ffffff;
+            background-color: #f5f5f5; /* 96% Weiß */
             color: #1a1a1a;
             font-family: "Segoe UI", system-ui, sans-serif;
             margin: 0;
@@ -19,6 +24,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("../docs/images/atomic.png");
+            background-size: 100px;
+            background-repeat: repeat;
+            opacity: 0.15; /* Halb durchsichtig */
+            z-index: -1; /* Legt das Bild in den Hintergrund */
         }
 
         #toolbar {
@@ -37,19 +53,19 @@
             padding: 12px 20px;
             font-size: 15px;
             cursor: pointer;
-            background: #e30000;
+            background: var(--main-red);
             color: #fff;
             border: none;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(227, 0, 0, 0.25);
+            box-shadow: 0 2px 8px rgba(var(--main-red-rgb), 0.25);
         }
 
         button:hover { background: #c40000; }
 
         button.secondary {
             background: #fff;
-            color: #e30000;
-            border: 2px solid #e30000;
+            color: var(--main-red);
+            border: 2px solid var(--main-red);
         }
 
         label.toggle {
@@ -67,7 +83,7 @@
             position: absolute;
             top: 72px;
             font-size: 14px;
-            color: #888;
+            color: #423a3a;
         }
 
         #radarWrap {
@@ -81,9 +97,9 @@
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            border: 3px solid #e30000;
+            border: 3px solid var(--main-red);
             background: #fafafa;
-            box-shadow: inset 0 0 24px rgba(227, 0, 0, 0.06);
+            box-shadow: inset 0 0 24px rgba(var(--main-red-rgb), 0.06);
         }
 
         #ringLabels {
@@ -96,7 +112,7 @@
             position: absolute;
             font-size: 11px;
             font-weight: 700;
-            color: #e30000;
+            color: var(--main-red);
             transform: translate(-50%, -50%);
             white-space: nowrap;
         }
@@ -107,7 +123,7 @@
             left: 50%;
             width: 5px;
             height: 42%;
-            background: linear-gradient(to top, rgba(227,0,0,0.15), #e30000);
+            background: linear-gradient(to top, rgba(var(--main-red-rgb), 0.15), var(--main-red));
             transform-origin: bottom center;
             margin-left: -2.5px;
             margin-top: -42%;
@@ -123,11 +139,11 @@
             width: 18px;
             height: 18px;
             margin: -9px 0 0 -9px;
-            background: #e30000;
+            background: var(--main-red);
             border: 3px solid #fff;
             border-radius: 50%;
             z-index: 11;
-            box-shadow: 0 0 0 2px #e30000;
+            box-shadow: 0 0 0 2px var(--main-red);
         }
 
         #angleText {
@@ -137,7 +153,7 @@
             transform: translateX(-50%);
             font-size: 26px;
             font-weight: 800;
-            color: #e30000;
+            color: var(--main-red);
             white-space: nowrap;
         }
 
@@ -195,7 +211,7 @@
 
         .bar-fill {
             height: 100%;
-            background: #e30000;
+            background: #E20036;
             width: 0%;
             transition: width 0.35s ease-out;
         }
@@ -214,7 +230,7 @@
         <button type="button" id="clearBtn" class="secondary">Reset</button>
     </div>
 
-    <div id="statusLine">Chrome/Edge · 115200 · Web Serial</div>
+    <!-- <div id="statusLine">Chrome/Edge · 115200 · Web Serial</div> -->
 
     <div id="radarWrap">
         <div id="radarRing"></div>
