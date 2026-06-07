@@ -104,7 +104,7 @@ Das Board wurde auf einem 8-Richtungen-Schema (N, NO, O, …) fixiert. Pro Richt
 
 ### Demo starten
 
-1. Board flashen und per USB verbinden  
+1. Geflashtes Board per USB verbinden  
 2. **Chrome oder Edge** öffnen (Web Serial)  
 3. <https://wuhuisland.eu> öffnen  
 4. Button **„Mit PSoC verbinden“** → KitProg3 COM-Port wählen  
