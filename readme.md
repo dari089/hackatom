@@ -7,8 +7,8 @@
 | **Team** | ATomic |
 | **Members** | dari, fabi, laurence |
 | **Board** | PSoC Edge E84 AI Evaluation Kit (`KIT_PSE84_AI`) |
-| **Live-Demo (UI)** | https://wuhuisland.eu |
-| **Repository** | https://github.com/dari089/hackatom |
+| **Live-Demo (UI)** | <https://wuhuisland.eu> |
+| **Repository** | <https://github.com/dari089/hackatom> |
 
 ---
 
@@ -17,7 +17,7 @@
 Ziel: Mit zwei Mikrofonen auf dem PSoC Edge AI Kit erkennen, **aus welcher Richtung** ein Sirenen- / Einsatzfahrzeug-Sound kommt.
 
 - **8 Richtungen:** North, Northeast, East, Southeast, South, Southwest, West, Northwest  
-- **Zusätzliche Klassen:** `noise`, `unlabeled`  
+- **Zusätzliche Klassen:** `noise`
 - **Inferenz:** On-device auf **Arm Cortex-M55** (Edge AI, kein Cloud-Inference zur Laufzeit)  
 - **Visualisierung:** Web-Radar (`index.html`) auf [wuhuisland.eu](https://wuhuisland.eu)
 
@@ -35,9 +35,18 @@ Sirene → 2× Mikrofon (PSoC) → `audio.c` → ML (CM55) → UART → Browser 
 
 1. **Setup:** ModusToolbox + DEEPCRAFT Studio installiert; Infineon Deploy-Audio-Beispiel als Basis  
 2. **Proof of Concept:** 4 Richtungen, wenig Daten — Workflow (Sammeln → Trainieren → Flashen) verstanden  
-3. **Finalmodell:** 8 Richtungen, ~[27] Sessions, ~[5] Minuten annotierte Daten, je Richtung [3] Messungen  
+3. **Finalmodell:** 8 Richtungen, 26 Sessions, ~10 s pro Aufnahme, je Richtung 3 Messungen (Aufnahmen unter `data/`)
 4. **Deployment:** `model.c` + `model.h` in `proj_cm55/model/` ersetzt; `audio.c` für Stereo angepasst  
 5. **UI:** Radar-Visualisierung parallel entwickelt und auf wuhuisland.eu veröffentlicht  
+
+---
+
+## Setup & Datensammlung
+
+Das Board wurde auf einem 8-Richtungen-Schema (N, NO, O, …) fixiert. Pro Richtung wurden mehrere ~10 s Sessions mit Sirenen-Sound aufgenommen (DEEPCRAFT Live Data Collection).
+![PSoC Edge E84 AI Kit — Setup](docs/images/boardsetup.png)
+
+*Team ATomic — Mess-Setup für Richtungserkennung (N / S / W / O markiert)*
 
 ---
 
@@ -48,14 +57,16 @@ Sirene → 2× Mikrofon (PSoC) → `audio.c` → ML (CM55) → UART → Browser 
 | Preprocessor | Contextual Window **1 s**, Shape `[16000, 2]` (Stereo) |
 | Architektur | Conv1D **Small** |
 | Quantization | Ein (für Code-Generierung) |
-| Klassen | 10 (8 Richtungen + noise + unlabeled) |
+| Klassen | 9 (8 Richtungen + noise) |
 | Export | `model.c`, `model.h` für PSoC Edge |
 
+![Deepcraft Training feritg](docs/images/deepcraft.png)
+
 **Basis-Beispiel (Infineon):**  
-https://github.com/Infineon/mtb-example-psoc-edge-ml-deepcraft-deploy-audio
+<https://github.com/Infineon/mtb-example-psoc-edge-ml-deepcraft-deploy-audio>
 
 **Deploy-Anleitung:**  
-https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-supported-boards/deploy-model-PSOC-6-PSOC-Edge
+<https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-supported-boards/deploy-model-PSOC-6-PSOC-Edge>
 
 ---
 
@@ -85,19 +96,21 @@ https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-support
 | | |
 |---|---|
 | **Datei** | `web/index.html` |
-| **Hosting** | https://wuhuisland.eu/[…] |
+| **Hosting** | <https://wuhuisland.eu/> |
 | **Funktion** | 8-Richtungen-Radar, Score-Balken, animierter Zeiger |
 | **Datenquelle** | Web Serial (Board → Laptop → Browser) |
+
+![Radar-UI — 8-Richtungen-Anzeige](docs/images/radar-ui.png)
 
 ### Demo starten
 
 1. Board flashen und per USB verbinden  
 2. **Chrome oder Edge** öffnen (Web Serial)  
-3. https://wuhuisland.eu/[…] öffnen  
-4. Button **„Mit Board verbinden“** → KitProg3 COM-Port wählen  
+3. <https://wuhuisland.eu> öffnen  
+4. Button **„Mit PSoC verbinden“** → KitProg3 COM-Port wählen  
 5. Sirenen-Sound abspielen, Radar beobachten  
 
-**Serial-Einstellungen:** 115200 Baud, 8N1 (vom Board vorgegeben)
+**Serial-Einstellungen:** 115200 Baud, 8N1
 
 ---
 
@@ -112,9 +125,9 @@ https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-support
 
 ### Bekannte Limitationen
 
-- **North vs. South:** Zwei **horizontale** Mikrofone unterscheiden „oben/unten“ schlecht; zusätzlich wenig Trainingsdaten mit Sirene deutlich **über** dem Board  
-- **Wenig Trainingsdaten** (~5 Min gesamt) — Modell ist ein Hackathon-PoC, kein Produktionsmodell  
-- **Web Serial:** Funktioniert am zuverlässigsten am **PC** mit Chrome/Edge, nicht am iPhone  
+- **North vs. South:** Zwei **horizontale** Mikrofone unterscheiden „oben/unten“ schlecht; vermutlich wenig Trainingsdaten
+- **Wenig Trainingsdaten:**  Modell hat nicht die beste Genauigkeit und springt teilweise zwischen Richtungen
+- **Web Serial:** Funktioniert am zuverlässigsten am **PC** mit Chrome
 
 ---
 
@@ -124,30 +137,22 @@ https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-support
 - DEEPCRAFT: **Validation-Set** manuell prüfen (nicht 0:00 lassen)  
 - Preprocessor **1 s** statt 2 s (sonst RAM-Overflow auf dem Board)  
 - Erst **PoC mit wenigen Klassen**, dann auf 8 Richtungen erweitern  
-- Für bessere North-Erkennung: mehr Daten mit variabler Sirenen-Höhe  
+- Für bessere North-Erkennung: mehr Daten
+- Programme waren teilweise langsam/buggy, was Zeit kostete
 
 ---
 
-## 9. Team & Rollen
-
-| Person | Schwerpunkt |
-|--------|-------------|
-| [Name A] | ModusToolbox, Build, Flash, Hardware |
-| [Name B] | DEEPCRAFT, Training, Datensammlung |
-| [Name C] | Web-UI, Hosting, Dokumentation |
-
----
-
-## 10. Lizenz & Danksagung
+## 9. Lizenz & Danksagung
 
 - Basiert auf Infineon ModusToolbox Beispielcode (siehe Datei-Header in `audio.c`)  
 - ML-Modell trainiert mit **DEEPCRAFT Studio** (Imagimob / Infineon)  
 - Hackathon: **Infineon EESTech Challenge**
+- Bei Setup, Debugging und Dokumentation haben wir KI-Tools (Gemini/Cursor) als Hilfe genutzt — Entscheidungen, Datensammlung, Training und Flashing haben wir selbst gemacht.
 
 ---
 
 ## Quick Links
 
-- [Live Radar UI](https://wuhuisland.eu/[…])  
+- [Live Radar UI](https://wuhuisland.eu/)  
 - [Infineon Deploy Audio Example](https://github.com/Infineon/mtb-example-psoc-edge-ml-deepcraft-deploy-audio)  
 - [DEEPCRAFT Deploy Docs](https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-supported-boards/deploy-model-PSOC-6-PSOC-Edge)
