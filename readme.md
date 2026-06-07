@@ -47,7 +47,7 @@ The board was fixed centrally onto an 8-direction schema (N, NE, E, ...). Multip
 
 ![PSoC Edge E84 AI Kit — Setup](docs/images/boardsetup.png)
 
-*Team ATomic — Measurement setup for direction detection (N / S / W / E marked)*
+*Team ATomic — Measurement setup for direction detection (N / E / S / W marked)*
 
 ---
 
