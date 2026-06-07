@@ -158,4 +158,6 @@ The board was fixed centrally onto an 8-direction schema (N, NE, E, ...). Multip
 - [Live Radar UI](https://wuhuisland.eu/)  
 - [Our Repository (Team ATomic Trio)](https://github.com/dari089/hackatom)
 - [Official Hackathon Repository (Infineon)](https://github.com/infineon/hackathon)  
-- [Infineon Deploy Audio Example](
+- [Infineon Deploy Audio Example](https://github.com/Infineon/mtb-example-psoc-edge-ml-deepcraft-deploy-audio)  
+- [DEEPCRAFT Deploy Docs](https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-supported-boards/deploy-model-PSOC-6-PSOC-Edge)  
+- [EESTech Challenge](https://eestec-muc.de/category/eestechallenge/)
