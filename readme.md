@@ -1,3 +1,6 @@
+
+![logo](docs/images/atomic.png)
+
 # Siren Direction Detection — PSoC Edge E84 AI Kit
 
 **Infineon EESTech Challenge Hackathon 2026**
