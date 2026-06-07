@@ -108,7 +108,7 @@ Das Board wurde auf einem 8-Richtungen-Schema (N, NO, O, …) fixiert. Pro Richt
 2. **Chrome oder Edge** öffnen (Web Serial)  
 3. <https://wuhuisland.eu> öffnen  
 4. Button **„Mit PSoC verbinden“** → KitProg3 COM-Port wählen  
-5. Sirenen-Sound abspielen, Radar beobachten  
+5. [Sirenen-Sound](https://github.com/dari089/hackatom/blob/main/data/sirene/freesound_community-lafiresiren-55183.mp3) abspielen, Radar beobachten  
 
 **Serial-Einstellungen:** 115200 Baud, 8N1
 
