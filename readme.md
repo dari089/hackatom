@@ -7,8 +7,8 @@
 | **Team** | dari, fabi, laurence |
 | **ATomic** |
 | **Board** | PSoC Edge E84 AI Evaluation Kit (`KIT_PSE84_AI`) |
-| **Live-Demo (UI)** | https://wuhuisland.eu/[pfad-zur-index.html] |
-| **Repository** | https://github.com/[user]/[repo] |
+| **Live-Demo (UI)** | https://wuhuisland.eu |
+| **Repository** | https://github.com/dari089/hackatom |
 
 ---
 
