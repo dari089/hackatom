@@ -158,4 +158,4 @@ Das Board wurde auf einem 8-Richtungen-Schema (N, NO, O, …) fixiert. Pro Richt
 - [Offizielles Hackathon-Repository (Infineon)](https://github.com/infineon/hackathon)  
 - [Infineon Deploy Audio Example](https://github.com/Infineon/mtb-example-psoc-edge-ml-deepcraft-deploy-audio)  
 - [DEEPCRAFT Deploy Docs](https://developer.imagimob.com/deepcraft-studio/deployment/deploy-models-supported-boards/deploy-model-PSOC-6-PSOC-Edge)  
-- [EESTech Challenge](https://eestechchallenge.eestec.net/)
+- [EESTech Challenge](https://eestec-muc.de/category/eestechallenge/)
